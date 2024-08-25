@@ -16,7 +16,7 @@ namespace Library.Business.Managers
 
         public AuthorManager(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            authorRepository = unitOfWork.AuthorRepository;
+            authorRepository = unitOfWork.AuthorsRepository;
         }
 
         #region CRUD operations

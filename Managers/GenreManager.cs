@@ -16,7 +16,7 @@ namespace Library.Business.Managers
 
         public GenreManager(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            genresRepository = unitOfWork.GenreRepository;
+            genresRepository = unitOfWork.GenresRepository;
         }
 
         #region CRUD operations

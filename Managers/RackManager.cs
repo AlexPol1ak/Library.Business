@@ -16,7 +16,7 @@ namespace Library.Business.Managers
 
         public RackManager(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            racksRepository = unitOfWork.RackRepository;
+            racksRepository = unitOfWork.RacksRepository;
         }
 
         #region CRUD operations

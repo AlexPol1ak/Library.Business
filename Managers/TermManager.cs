@@ -18,7 +18,7 @@ namespace Library.Business.Managers
 
         public TermManager(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            termsRepository = unitOfWork.TermRepository;
+            termsRepository = unitOfWork.TermsRepository;
         }
 
         #region CRUD operations

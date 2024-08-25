@@ -18,7 +18,7 @@ namespace Library.Business.Managers
 
         public UserManager(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            usersRepository = unitOfWork.UserRepository;
+            usersRepository = unitOfWork.UsersRepository;
         }
 
         #region CRUD operations
@@ -68,9 +68,7 @@ namespace Library.Business.Managers
         /// <returns>Запрос, содержащий пользователей, соответствующих условию.</returns>
         public IQueryable<User> FindUser(Expression<Func<User, bool>> predicate)
         {
-            IQueryable<User> users = usersRepository.Find(predicate);
-            LoadRequests(users);
-            return users;
+            return usersRepository.Find(predicate);
         }
 
         /// <summary>

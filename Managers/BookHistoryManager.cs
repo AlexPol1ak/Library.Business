@@ -16,7 +16,7 @@ namespace Library.Business.Managers
 
         public BookHistoryManager(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            bookHistoriesRepository = unitOfWork.BookHistoryRepository;
+            bookHistoriesRepository = unitOfWork.BookHistoriesRepository;
         }
 
         #region CRUD operations
