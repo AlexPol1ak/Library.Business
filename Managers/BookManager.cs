@@ -74,9 +74,9 @@ namespace Library.Business.Managers
         /// Возвращает все книги в системе.
         /// </summary>
         /// <returns>Коллекция всех книг.</returns>
-        public IEnumerable<Book> GetBooks()
+        public IEnumerable<Book> GetBooks(params string[] includes)
         {
-            return booksRepository.GetAll();
+            return booksRepository.GetAll(includes);
         }
 
         /// <summary>

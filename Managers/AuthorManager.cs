@@ -74,9 +74,9 @@ namespace Library.Business.Managers
         /// Возвращает всех авторов в системе.
         /// </summary>
         /// <returns>Коллекция всех авторов.</returns>
-        public IEnumerable<Author> GetAuthors()
+        public IEnumerable<Author> GetAuthors(params string[] includes)
         {
-            return authorRepository.GetAll();
+            return authorRepository.GetAll(includes);
         }
 
         /// <summary>

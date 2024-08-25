@@ -76,9 +76,9 @@ namespace Library.Business.Managers
         /// Возвращает всех сотрудников в системе.
         /// </summary>
         /// <returns>Коллекция всех сотрудников.</returns>
-        public IEnumerable<Stuff> GetStuffs()
+        public IEnumerable<Stuff> GetStuffs(params string[] includes)
         {
-            return stuffRepository.GetAll();
+            return stuffRepository.GetAll(includes);
         }
 
         /// <summary>

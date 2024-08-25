@@ -74,9 +74,9 @@ namespace Library.Business.Managers
         /// Возвращает все жанры в системе.
         /// </summary>
         /// <returns>Коллекция всех жанров.</returns>
-        public IEnumerable<Genre> GetGenres()
+        public IEnumerable<Genre> GetGenres(params string[] includes)
         {
-            return genresRepository.GetAll();
+            return genresRepository.GetAll(includes);
         }
 
         /// <summary>

@@ -74,9 +74,9 @@ namespace Library.Business.Managers
         /// Возвращает все полки в системе.
         /// </summary>
         /// <returns>Коллекция всех полок.</returns>
-        public IEnumerable<Rack> GetRacks()
+        public IEnumerable<Rack> GetRacks(params string[] includes)
         {
-            return racksRepository.GetAll();
+            return racksRepository.GetAll(includes);
         }
 
         /// <summary>

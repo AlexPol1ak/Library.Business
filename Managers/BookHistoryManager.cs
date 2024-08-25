@@ -74,9 +74,9 @@ namespace Library.Business.Managers
         /// Возвращает все записи в истории книг в системе.
         /// </summary>
         /// <returns>Коллекция всех записей истории книг.</returns>
-        public IEnumerable<BookHistory> GetBookHistories()
+        public IEnumerable<BookHistory> GetBookHistories(params string[] includes)
         {
-            return bookHistoriesRepository.GetAll();
+            return bookHistoriesRepository.GetAll(includes);
         }
 
         /// <summary>

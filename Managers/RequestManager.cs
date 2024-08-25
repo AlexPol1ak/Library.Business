@@ -76,9 +76,9 @@ namespace Library.Business.Managers
         /// Возвращает все запросы в системе.
         /// </summary>
         /// <returns>Коллекция всех запросов.</returns>
-        public IEnumerable<Request> GetRequests()
+        public IEnumerable<Request> GetRequests(params string[] includes)
         {
-            return requestsRepository.GetAll();
+            return requestsRepository.GetAll(includes);
         }
 
         /// <summary>

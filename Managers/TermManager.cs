@@ -1,4 +1,6 @@
-﻿using Library.Domain.Entities.Books;
+﻿using Library.DAL.Repositories;
+using Library.Domain.Entities.Books;
+using Library.Domain.Entities.Users;
 using Library.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,7 +23,6 @@ namespace Library.Business.Managers
 
         #region CRUD operations
 
-        /// <```csharp
         /// Создает новый срок в системе.
         /// </summary>
         /// <param name="term">Срок для добавления.</param>
@@ -74,9 +75,9 @@ namespace Library.Business.Managers
         /// Возвращает все сроки в системе.
         /// </summary>
         /// <returns>Коллекция всех сроков.</returns>
-        public IEnumerable<Term> GetTerms()
+        public IEnumerable<Term> GetTerms(params string[] includes)
         {
-            return termsRepository.GetAll();
+            return termsRepository.GetAll(includes);
         }
 
         /// <summary>
@@ -118,7 +119,6 @@ namespace Library.Business.Managers
         {
             return termsRepository.Count();
         }
-
         #endregion
     }
 }
