@@ -68,7 +68,9 @@ namespace Library.Business.Managers
         /// <returns>Запрос, содержащий пользователей, соответствующих условию.</returns>
         public IQueryable<User> FindUser(Expression<Func<User, bool>> predicate)
         {
-            return usersRepository.Find(predicate);
+            IQueryable<User> users = usersRepository.Find(predicate);
+            LoadRequests(users);
+            return users;
         }
 
         /// <summary>
@@ -77,7 +79,9 @@ namespace Library.Business.Managers
         /// <returns>Коллекция всех пользователей.</returns>
         public IEnumerable<User> GetUsers()
         {
-            return usersRepository.GetAll();
+            IEnumerable<User> users = usersRepository.GetAll();
+            LoadRequests(users);
+            return users;
         }
 
         /// <summary>
@@ -88,7 +92,9 @@ namespace Library.Business.Managers
         /// <returns>Пользователь с указанным идентификатором.</returns>
         public User? GetUser(int id, params string[] includes)
         {
-            return usersRepository.Get(id, includes);
+            User? user = usersRepository.Get(id, includes);
+            if(user !=null) LoadRequests(user);
+            return user;
         }
 
         /// <summary>
@@ -120,5 +126,84 @@ namespace Library.Business.Managers
             return usersRepository.Count();
         }
         #endregion
+
+        #region Request operations
+        /// <summary>
+        /// Добавляет читателю запрос на книгу
+        /// </summary>
+        /// <param name="idUser">ID читателя</param>
+        /// <param name="request">Запрос</param>
+        /// <returns>True- если запрос добавлен, иначе False</returns>
+        public bool AddRequest(int idUser, Request request)
+        {
+            User? user = usersRepository.Get(idUser);
+            // Если читатель не найден
+            if (user is null) throw new ArgumentNullException(nameof(user));
+            // Если запрос принадлжеит другому читателю
+            if (request.UserId <=0) throw new ArgumentException($"Запрос {request} пренадлежит другому читателю");
+            // Если у читателя уже есть запрос на эту книгу
+            if (user.Requests.Contains(request)) return false;
+
+            request.UserId = user.UserId;
+            user.Requests.Add(request);
+            return true;    
+        }
+
+        /// <summary>
+        /// Удаялет запрос на книгу у читателя.
+        /// </summary>
+        /// <param name="idUser">ID читателя</param>
+        /// <param name="request">Запрос</param>
+        /// <returns>True- если запрос добавлен, иначе False</returns>
+        public bool DeleteRequest(int idUser, Request request)
+        {
+            bool flag = false;
+
+            User? user = usersRepository.Get(idUser);
+            // Если читатель не найден
+            if (user is null) throw new ArgumentNullException(nameof(user));
+            if (request.UserId != user.UserId) throw new ArgumentException($"Запрос {request} пренадлежит другому читателю");
+            if (!user.Requests.Contains(request)) return false;
+
+            user.Requests.Remove(request);
+            return true;
+        }
+
+        #endregion
+        #region Requests load
+        /// <summary>
+        /// Загружает запросы на книги читателя.
+        /// </summary>
+        /// <param name="user">Читатель</param>
+        /// <returns>Возвращает <c>true</c>, если запросы загружены, иначе <c>false</c>.</returns>
+        private bool LoadRequests(User user)
+        {
+            if(user is not null && usersRepository.Contains(user))
+            {
+                LoadRelatedEntities(user, u => u.Requests);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Загружает запросы на книги читателей.
+        /// </summary>
+        /// <param name="user">Читатель</param>
+        /// <returns>Возвращает <c>true</c>, если запросы загружены, иначе <c>false</c>.</returns>
+        private bool LoadRequests(IEnumerable<User> users)
+        {
+            if(users == null || users.Count() <1) return false;
+
+            List<bool> flags = new();
+            foreach(User user in users)
+            {
+                bool flag = LoadRequests(user);
+                flags.Append(flag);
+            }
+            return flags.Any();
+        }
+        #endregion
     }
+
 }
