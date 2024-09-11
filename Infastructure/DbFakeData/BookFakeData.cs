@@ -29,7 +29,7 @@ namespace Library.Business.Infastructure.DbFakeData
         /// <summary>
         /// Устанавливает начальные данные книг,авторов, жанров, стелажей, правил выдачи
         /// </summary>
-        public void InstallData()
+        public virtual void InstallData()
         {
             List<Genre> tempData = _convertJsonData();
             List<Term> termsDb = getOrCreateTerms();
