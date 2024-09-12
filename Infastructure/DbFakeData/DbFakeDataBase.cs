@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Library.Business.Infastructure.DbFakeData
 {
@@ -27,10 +28,9 @@ namespace Library.Business.Infastructure.DbFakeData
         protected BookManager _bookManager;
         protected BookHistoryManager _bookHistoryManager;
         #endregion
-        protected string _jsonDataName;
-        protected string _jsonString;
+        protected string _jsonString = string.Empty;
 
-        public DbFakeDataBase(ManagersFactory factory, string jsonDataName)
+        public DbFakeDataBase(ManagersFactory factory)
         {
             _userManager = factory.UserManager;
             _stuffManager = factory.StuffManager;
@@ -41,21 +41,23 @@ namespace Library.Business.Infastructure.DbFakeData
             _rackManager = factory.RackManager;
             _bookHistoryManager = factory.BookHistoryManager;
             _genreManager = factory.GenreManager;
-            _jsonDataName = jsonDataName;
-
-            _parseJson(jsonDataName);
-        }
-
+            
+            _parseJson();
+        } 
         /// <summary>
         /// Парсинг данных из  файла JSON.
         /// </summary>
         /// <param name="name"></param>
         /// <exception cref="NullReferenceException"></exception>
-        private void _parseJson(string name)
+        private void _parseJson()
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "data", name);
-            _jsonString = File.ReadAllText(path);
-            if (_jsonString == string.Empty || _jsonString == null) throw new NullReferenceException(path);
+            try
+            {
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "books_and_authors.json");
+                _jsonString = File.ReadAllText(path);
+            }
+            catch(Exception ex) { };
+     
         }
     }
 }

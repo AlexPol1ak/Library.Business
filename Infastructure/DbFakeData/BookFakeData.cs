@@ -22,15 +22,17 @@ namespace Library.Business.Infastructure.DbFakeData
     /// </summary>
     public class BookFakeData: DbFakeDataBase
     {
-        public BookFakeData(ManagersFactory factory, string jsonDataName) : base(factory, jsonDataName)
+        public BookFakeData(ManagersFactory factory) : base(factory)
         {
         }
 
         /// <summary>
         /// Устанавливает начальные данные книг,авторов, жанров, стелажей, правил выдачи
         /// </summary>
-        public virtual void InstallData()
+        public virtual bool InstallData()
         {
+            if(_jsonString == string.Empty) return false;
+
             List<Genre> tempData = _convertJsonData();
             List<Term> termsDb = getOrCreateTerms();
             List<Rack> raksDb = getOrCreateRacks(tempData);
@@ -38,6 +40,8 @@ namespace Library.Business.Infastructure.DbFakeData
             List<Genre> genresDb = getOrCreateGenre(tempData);
             List<Book> booksDb = getOrCreateBook(tempData, termsDb, genresDb);
             installBooksRelationship(tempData, booksDb, raksDb, authorsDb);
+
+            return true;
         }
 
         /// <summary>

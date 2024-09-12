@@ -13,18 +13,22 @@ namespace Library.Business.Infastructure.DbFakeData
     /// </summary>
     public class UserFakeData : BookFakeData
     {
-        public UserFakeData(ManagersFactory factory, string jsonDataName) : base(factory, jsonDataName)
+        public UserFakeData(ManagersFactory factory) : base(factory)
         {
         }
 
         /// <summary>
         /// Создает данные пользователей и персонал
         /// </summary>
-        public override void  InstallData()
+        public override bool  InstallData()
         {
-            base.InstallData();
+            bool flag = base.InstallData();
+            if(!flag) return false;
+
             installStuff();
             installUsers();
+
+            return true;
         }
 
         /// <summary>

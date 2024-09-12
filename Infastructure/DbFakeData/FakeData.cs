@@ -11,16 +11,16 @@ namespace Library.Business.Infastructure.DbFakeData
     /// </summary>
     public class FakeData : UserFakeData
     {
-        public FakeData(ManagersFactory factory, string jsonDataName) : base(factory, jsonDataName)
+        public FakeData(ManagersFactory factory) : base(factory)
         {
         }
 
         /// <summary>
         /// Устанавливает начальные данные в базу данных.
         /// </summary>
-        public override void InstallData()
+        public override bool InstallData()
         {
-            base.InstallData(); 
+            return base.InstallData(); 
         }
     }
 }
