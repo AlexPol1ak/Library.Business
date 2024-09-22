@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Library.Business.Infastructure.DbFakeData
 {
     /// <summary>
-    /// Класс устанвоки начальных данных в базу данных
+    /// Класс установки начальных данных в базу данных
     /// </summary>
     public class FakeData : UserFakeData
     {

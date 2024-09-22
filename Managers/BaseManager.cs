@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Library.Business.Managers
 {
+    /// <summary>
+    /// Базовый класс менеджера.
+    /// </summary>
     public class BaseManager
     {
         private readonly IUnitOfWork _unitOfWork;

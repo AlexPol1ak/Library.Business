@@ -12,7 +12,7 @@ using System.Windows;
 namespace Library.Business.Infastructure.DbFakeData
 {
     /// <summary>
-    /// Базовый клаас нчальных данных приложения
+    /// Базовый класс нчальных данных приложения
     /// </summary>
     public class DbFakeDataBase
     {

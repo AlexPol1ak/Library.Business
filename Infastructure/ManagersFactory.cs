@@ -13,6 +13,9 @@ using System.Windows;
 
 namespace Library.Business.Infastructure
 {
+    /// <summary>
+    /// Класс фабрики менеджеров. Создает и предоставляет доступ к менеджерам
+    /// </summary>
     public class ManagersFactory
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -45,6 +48,9 @@ namespace Library.Business.Infastructure
             initManagers();
         }
 
+        /// <summary>
+        /// Инициализация менедежеров.
+        /// </summary>
         private void initManagers()
         {
             UserManager = new UserManager(_unitOfWork);
