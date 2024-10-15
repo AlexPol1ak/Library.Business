@@ -12,7 +12,7 @@ using System.Windows;
 namespace Library.Business.Infastructure.DbFakeData
 {
     /// <summary>
-    /// Базовый класс нчальных данных приложения
+    /// Базовый класс начальных данных приложения
     /// </summary>
     public class DbFakeDataBase
     {
@@ -56,8 +56,7 @@ namespace Library.Business.Infastructure.DbFakeData
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "books_and_authors.json");
                 _jsonString = File.ReadAllText(path);
             }
-            catch(Exception ex) { };
-     
+            catch(Exception ex) { };    
         }
     }
 }

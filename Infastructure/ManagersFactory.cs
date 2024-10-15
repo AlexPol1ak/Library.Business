@@ -49,7 +49,7 @@ namespace Library.Business.Infastructure
         }
 
         /// <summary>
-        /// Инициализация менедежеров.
+        /// Инициализация менеджеров.
         /// </summary>
         private void initManagers()
         {

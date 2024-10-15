@@ -18,7 +18,7 @@ using System.Windows.Media.Animation;
 namespace Library.Business.Infastructure.DbFakeData
 {
     /// <summary>
-    /// Класс устнановки данных книг,авторов, жанров, стелажей, правил выдачи.
+    /// Класс установки данных книг,авторов, жанров, стеллажей, правил выдачи.
     /// </summary>
     public class BookFakeData: DbFakeDataBase
     {
@@ -27,7 +27,7 @@ namespace Library.Business.Infastructure.DbFakeData
         }
 
         /// <summary>
-        /// Устанавливает начальные данные книг,авторов, жанров, стелажей, правил выдачи
+        /// Устанавливает начальные данные книг,авторов, жанров, стеллажей, правил выдачи
         /// </summary>
         public virtual bool InstallData()
         {
@@ -47,7 +47,7 @@ namespace Library.Business.Infastructure.DbFakeData
         /// <summary>
         /// Извлекает данные из считанной JSON строки.
         /// </summary>
-        /// <returns>Жанры с книгками и авторами</returns>
+        /// <returns>Жанры с книгами и авторами</returns>
         /// <exception cref="NullReferenceException">Если JSON строка пуста</exception>
         private List<Genre> _convertJsonData()
         {
@@ -95,7 +95,7 @@ namespace Library.Business.Infastructure.DbFakeData
         }
 
         /// <summary>
-        /// Получает или создает список стелажей.
+        /// Получает или создает список стеллажей.
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ namespace Library.Business.Infastructure.DbFakeData
         }
 
         /// <summary>
-        /// Получает или создает список авторов
+        /// Получает или создает список авторов.
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -179,11 +179,11 @@ namespace Library.Business.Infastructure.DbFakeData
         }
 
         /// <summary>
-        /// Получает или создает список жанров
+        /// Получает или создает список жанров.
         /// </summary>
-        /// <param name="genresData"></param>
-        /// <param name="termsDb"></param>
-        /// <param name="genresDb"></param>
+        /// <param name="genresData">Данные из JSON</param>
+        /// <param name="termsDb">Коллекция правил</param>
+        /// <param name="genresDb">Коллекция жанров</param>
         /// <returns></returns>
         private List<Book> getOrCreateBook(List<Genre> genresData, List<Term> termsDb, List<Genre> genresDb)
         {
@@ -222,11 +222,11 @@ namespace Library.Business.Infastructure.DbFakeData
         }
 
         /// <summary>
-        /// Устаналвивает связь между книгами и авторами, и стелажами. (m:m, 1:1)
+        /// Устанавливает связь между книгами и авторами, и стеллажами. (m:m, 1:1)
         /// </summary>
         /// <param name="data">Данные из JSON</param>
         /// <param name="booksDb">Данные книг из базы данных</param>
-        /// <param name="raksDb">Данные о стелажах из базы данных</param>
+        /// <param name="raksDb">Данные о стеллажах из базы данных</param>
         /// <param name="authorsDb">Данные о авторах</param>
         private void installBooksRelationship(List<Genre> data, List<Book> booksDb, List<Rack> raksDb, List<Author> authorsDb)
         {           

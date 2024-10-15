@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Library.Business.Managers
 {
     /// <summary>
-    /// Менеджер управления читатетлями.
+    /// Менеджер управления читателями.
     /// </summary>
     public class UserManager : BaseManager
     {
@@ -132,8 +132,8 @@ namespace Library.Business.Managers
             User? user = usersRepository.Get(idUser);
             // Если читатель не найден
             if (user is null) throw new ArgumentNullException(nameof(user));
-            // Если запрос принадлжеит другому читателю
-            if (request.UserId <= 0) throw new ArgumentException($"Запрос {request} пренадлежит другому читателю");
+            // Если запрос принадлежит другому читателю
+            if (request.UserId <= 0) throw new ArgumentException($"Запрос {request} принадлежит другому читателю");
             // Если у читателя уже есть запрос на эту книгу
             if (user.Requests.Contains(request)) return false;
 
@@ -143,7 +143,7 @@ namespace Library.Business.Managers
         }
 
         /// <summary>
-        /// Удаялет запрос на книгу у читателя.
+        /// Удаляет запрос на книгу у читателя.
         /// </summary>
         /// <param name="idUser">ID читателя</param>
         /// <param name="request">Запрос</param>
@@ -153,7 +153,7 @@ namespace Library.Business.Managers
             User? user = usersRepository.Get(idUser);
             // Если читатель не найден
             if (user is null) throw new ArgumentNullException(nameof(user));
-            if (request.UserId != user.UserId) throw new ArgumentException($"Запрос {request} пренадлежит другому читателю");
+            if (request.UserId != user.UserId) throw new ArgumentException($"Запрос {request} принадлежит другому читателю");
             if (!user.Requests.Contains(request)) return false;
 
             user.Requests.Remove(request);

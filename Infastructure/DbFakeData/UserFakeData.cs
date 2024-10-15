@@ -32,7 +32,7 @@ namespace Library.Business.Infastructure.DbFakeData
         }
 
         /// <summary>
-        /// Устаналивает персонал
+        /// Устанавливает персонал.
         /// </summary>
         private void installStuff()
         {
@@ -48,7 +48,7 @@ namespace Library.Business.Infastructure.DbFakeData
         }
 
         /// <summary>
-        /// Устаналивает пользователей
+        /// Устанавливает пользователей
         /// </summary>
         private void installUsers()
         {
