@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Library.Business.Infastructure.DbFakeData
+﻿namespace Library.Business.Infastructure.DbFakeData
 {
     /// <summary>
     /// Класс установки начальных данных в базу данных
@@ -20,7 +14,7 @@ namespace Library.Business.Infastructure.DbFakeData
         /// </summary>
         public override bool InstallData()
         {
-            return base.InstallData(); 
+            return base.InstallData();
         }
     }
 }

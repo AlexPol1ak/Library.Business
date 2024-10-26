@@ -1,15 +1,8 @@
 ﻿using Library.Business.Managers;
 using Library.DAL.Repositories;
-using Library.Domain.Entities.Books;
 using Library.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Library.Business.Infastructure
 {
@@ -43,8 +36,8 @@ namespace Library.Business.Infastructure
             string? sqlVersion = config[mySqlVersionStringName];
             if (sqlVersion == null)
                 throw new KeyNotFoundException($"Ключ {mySqlVersionStringName} не найден");
-           
-            _unitOfWork =  new EfUnitOfWork(connectionString, sqlVersion);
+
+            _unitOfWork = new EfUnitOfWork(connectionString, sqlVersion);
             initManagers();
         }
 

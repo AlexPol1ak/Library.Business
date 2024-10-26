@@ -1,10 +1,4 @@
 ﻿using Library.Domain.Entities.Users;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Business.Infastructure.DbFakeData
 {
@@ -20,10 +14,10 @@ namespace Library.Business.Infastructure.DbFakeData
         /// <summary>
         /// Создает данные пользователей и персонал
         /// </summary>
-        public override bool  InstallData()
+        public override bool InstallData()
         {
             bool flag = base.InstallData();
-            if(!flag) return false;
+            if (!flag) return false;
 
             installStuff();
             installUsers();
@@ -39,7 +33,7 @@ namespace Library.Business.Infastructure.DbFakeData
             List<Stuff> stuffsDb = _stuffManager.GetStuffs().ToList();
             List<Stuff> stuffsFake = UserFakeData.getStuffs();
 
-            foreach(Stuff Fstuff in stuffsFake)
+            foreach (Stuff Fstuff in stuffsFake)
             {
                 if (stuffsDb.FindAll(sDB => sDB.Email == Fstuff.Email).Count > 0) continue;
                 _stuffManager.CreateStuff(Fstuff);

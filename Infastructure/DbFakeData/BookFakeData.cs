@@ -1,18 +1,5 @@
-﻿using Library.Business.Managers;
-using Library.Domain.Entities.Books;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Diagnostics.Metrics;
-using System.IO;
-using System.IO.Packaging;
-using System.Linq;
-using System.Text;
+﻿using Library.Domain.Entities.Books;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Media.Animation;
 
 
 namespace Library.Business.Infastructure.DbFakeData
@@ -20,7 +7,7 @@ namespace Library.Business.Infastructure.DbFakeData
     /// <summary>
     /// Класс установки данных книг,авторов, жанров, стеллажей, правил выдачи.
     /// </summary>
-    public class BookFakeData: DbFakeDataBase
+    public class BookFakeData : DbFakeDataBase
     {
         public BookFakeData(ManagersFactory factory) : base(factory)
         {
@@ -31,7 +18,7 @@ namespace Library.Business.Infastructure.DbFakeData
         /// </summary>
         public virtual bool InstallData()
         {
-            if(_jsonString == string.Empty) return false;
+            if (_jsonString == string.Empty) return false;
 
             List<Genre> tempData = _convertJsonData();
             List<Term> termsDb = getOrCreateTerms();
@@ -229,19 +216,19 @@ namespace Library.Business.Infastructure.DbFakeData
         /// <param name="raksDb">Данные о стеллажах из базы данных</param>
         /// <param name="authorsDb">Данные о авторах</param>
         private void installBooksRelationship(List<Genre> data, List<Book> booksDb, List<Rack> raksDb, List<Author> authorsDb)
-        {           
+        {
 
             foreach (Book bookDb in booksDb)
-            {   
+            {
                 // Установка книг на полки.
-                if(bookDb.Rack == null)
+                if (bookDb.Rack == null)
                 {
                     List<Rack> actualRaks = raksDb.FindAll(r => r.Name.Contains(bookDb.Genre.Name));
                     Random rd = new Random();
                     bookDb.Rack = actualRaks[rd.Next(0, actualRaks.Count)];
                     _bookManager.UpdateBook(bookDb);
                 }
-                
+
 
                 //Подгружает связанные сущности  авторов.                
                 _bookManager.LoadRelatedEntities(bookDb, b => b.Authors);

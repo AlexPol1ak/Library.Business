@@ -1,13 +1,5 @@
 ﻿using Library.Business.Managers;
-using Library.Domain.Entities.Books;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Library.Business.Infastructure.DbFakeData
 {
@@ -41,9 +33,9 @@ namespace Library.Business.Infastructure.DbFakeData
             _rackManager = factory.RackManager;
             _bookHistoryManager = factory.BookHistoryManager;
             _genreManager = factory.GenreManager;
-            
+
             _parseJson();
-        } 
+        }
         /// <summary>
         /// Парсинг данных из  файла JSON.
         /// </summary>
@@ -56,7 +48,7 @@ namespace Library.Business.Infastructure.DbFakeData
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "books_and_authors.json");
                 _jsonString = File.ReadAllText(path);
             }
-            catch(Exception ex) { };    
+            catch (Exception ex) { };
         }
     }
 }

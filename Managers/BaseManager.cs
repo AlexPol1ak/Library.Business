@@ -1,11 +1,5 @@
-﻿using Library.DAL.Repositories;
-using Library.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Library.Domain.Interfaces;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Business.Managers
 {
@@ -38,7 +32,7 @@ namespace Library.Business.Managers
                where T : class
                where TProperty : class
         {
-           _unitOfWork.LoadRelatedEntities(entity, navigationProperty);
+            _unitOfWork.LoadRelatedEntities(entity, navigationProperty);
         }
     }
 }
